@@ -1,0 +1,17 @@
+[repositories]
+rugix-extra = { git = "https://github.com/rugix/rugix-extra.git", branch = "v0.9" }
+
+# Raspberry Pi 3 / CM3 / Zero 2 W (U-Boot boot flow, arm64).
+# Pi 3 has no reliable tryboot path, so this is the primary target.
+[systems.rpi-uboot-arm64]
+layer = "customized"
+architecture = "arm64"
+target = "rpi-uboot"
+
+# Development variant: adds the "development" mixin (SSH with embedded
+# keys, debug tools).
+[systems.rpi-uboot-arm64-dev]
+layer = "customized"
+architecture = "arm64"
+target = "rpi-uboot"
+mixins = ["development"]

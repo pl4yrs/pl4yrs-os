@@ -1,0 +1,14 @@
+# Development only additions:
+# - authorized SSH keys (mine).
+# - helpful tooling (tmux, vim, and more in the future).
+# NOT included in production builds
+
+recipes = [
+    "core/ssh",
+    "dev-tools",
+]
+
+[parameters."core/ssh"]
+root_authorized_keys = """
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDfb1WCyyDCvfIuo3f/+EI7tINFQmI0pXYcxtcoOxWSP+SVLIm3N0sQj5u0Ei5gXpoVapCLHnGb5ZyxcA3saiOJzVLnrigI3exYeEAql5PcgEi938LsnMZ9YxwjC3iX6jSRVAKfDLMIC9SHdjOP0TIiu+44XBsfo8Q+7hYX/k/EDlYjPOZ/QI/hk/UJsRZVNN23BYpSXBmo6PKVh56er84d51aETw8vbbS7fkeq6CnT3FS6wkXvXDn7Co0dOEBxGLhOfh39CIXg7054F6u8qWC3ye2P3c5jyOmOLJUfCmGUvAb5wTNHl0vq4xii1oOqWDwJzTTwspUIGCS44Q32oZ+kN3IjhohCDsqS63y5PLwnHDC3Bidopz7/wWOEOz0+3X+MmJDLtGLfAOc2BJ6v4FU+Iczx15g4TMbQ9ZdY8F/Xua1NbY1y3rm1R77wAynutb4owgfMd7H9+Xu52SZfKdpvWfKV/zPrN7nlAffSeSbta2lQOf0QkdZo3PrAUN2rx3E= mykey@remove
+"""

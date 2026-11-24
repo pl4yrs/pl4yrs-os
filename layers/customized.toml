@@ -1,0 +1,25 @@
+# pl4yrs image layer on Debian Trixie (bootstrapped via mmdebstrap).
+# The RPi kernel/firmware still comes from the Raspberry Pi apt repo via
+# `rpi-debian-setup`; only the userspace base differs from Raspberry Pi OS.
+parent = "core/debian-trixie"
+
+recipes = [
+    "core/rpi-debian-setup",
+    # U-Boot second stage boot script (required on Pi 3).
+    "core/rpi-uboot-setup",
+    "core/persist-fake-hwclock",
+    "core/set-hostname",
+    "core/persist-root-home",
+    "core/ssh",
+    # Placeholder provisioning page served on the fallback AP (10.42.0.1).
+    "pl4yrs-web",
+    "pl4yrs",
+    "ap-fallback",
+    "timesync",
+]
+
+[parameters."core/set-hostname"]
+hostname = "pl4yrs"
+
+[parameters."core/pkg-cleanup"]
+autoremove = true

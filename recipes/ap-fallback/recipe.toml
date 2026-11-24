@@ -1,0 +1,6 @@
+description = "Wi-Fi AP fallback hotspot for initial provisioning (hostapd + dnsmasq)"
+
+[parameters]
+wifi_country = { default = "IT", description = "Wi-Fi regulatory domain (ISO country code), required for AP mode." }
+unprovisioned_delay = { default = "30", description = "Seconds without connectivity before the AP appears when no Wi-Fi profile exists." }
+provisioned_delay = { default = "180", description = "Seconds without connectivity before the AP appears once a Wi-Fi profile exists." }

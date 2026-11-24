@@ -1,0 +1,6 @@
+description = "pl4yrs service account + sendspin-cli player package"
+
+[parameters]
+sendspin_url = { default = "https://github.com/pl4yrs/sendspin-cpp-cli-deb/releases/download/v0.4.0/sendspin-cli_0.4.0-1_arm64.deb", description = "URL of the sendspin-cli .deb to install." }
+sendspin_sha256 = { default = "673a04106efac77ac8c067fdbf6d84d62c72d76699308bddda8d6e35de19b243", description = "SHA-256 of the sendspin-cli .deb." }
+system_size = { default = "2GiB", description = "A/B system partition capacity applied at first-boot bootstrap." }

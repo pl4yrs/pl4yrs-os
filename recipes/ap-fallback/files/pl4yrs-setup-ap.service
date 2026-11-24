@@ -1,0 +1,10 @@
+[Unit]
+Description=pl4yrs provisioning hotspot (hostapd + dnsmasq)
+After=sys-subsystem-net-devices-wlan0.device
+
+[Service]
+Type=forking
+ExecStart=/usr/local/sbin/pl4yrs-setup-ap.sh start
+ExecStop=/usr/local/sbin/pl4yrs-setup-ap.sh stop
+PIDFile=/run/pl4yrs-dnsmasq.pid
+RemainAfterExit=yes

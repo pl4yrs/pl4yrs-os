@@ -1,0 +1,11 @@
+[Unit]
+Description=Periodic connectivity check for Wi-Fi AP fallback
+
+[Timer]
+# First check shortly after boot; the script enforces the adaptive delay
+# (30s unprovisioned / 3min provisioned) itself.
+OnBootSec=10
+OnUnitActiveSec=10
+
+[Install]
+WantedBy=timers.target

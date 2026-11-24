@@ -1,0 +1,7 @@
+network-manager
+dnsmasq-base
+hostapd
+iw
+wpasupplicant
+rfkill
+wireless-regdb

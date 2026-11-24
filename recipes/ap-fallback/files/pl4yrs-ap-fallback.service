@@ -1,0 +1,8 @@
+[Unit]
+Description=Wi-Fi AP fallback for initial provisioning
+After=NetworkManager.service
+Wants=NetworkManager.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/pl4yrs-ap-fallback.sh
