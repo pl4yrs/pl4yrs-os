@@ -12,10 +12,17 @@ OTA-updatable Linux image shipping based on the awesome Rugix project.
   + recipe list + parameters.
 - `mixins/development.toml`. Defines dev-only extras: `core/ssh` with embedded keys
   and `dev-tools` (tmux, vim).
-- `recipes/`. Configures `pl4yrs` (service user + sendspin-cli deb), `ap-fallback`
-  (hostapd provisioning hotspot, adaptive delay), `pl4yrs-web` (placeholder
-  page to test the AP fallback), `dev-tools` (debug packages, dev mixin only).
+- `recipes/`. Configures `pl4yrs` (service user + sendspin-cli, pl4yrs-backend and
+  pl4yrs-tui debs), `ap-fallback` (hostapd provisioning hotspot, adaptive delay),
+  `pl4yrs-web` (placeholder page to test the AP fallback), `dev-tools` (debug
+  packages, dev mixin only).
 - `run-bakery`. Stock Rugix Bakery wrapper (`RUGIX_BAKERY_IMAGE=v0.9.6`).
+
+### pl4yrs debs
+
+The `pl4yrs` recipe installs `pl4yrs-backend` and `pl4yrs-tui` `.deb`s built from
+the [pl4yrs repo](https://github.com/pl4yrs/pl4yrs). To test local builds,
+drop them into `recipes/pl4yrs/files/`.
 
 ## Build
 
