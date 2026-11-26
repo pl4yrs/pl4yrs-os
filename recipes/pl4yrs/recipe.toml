@@ -6,5 +6,5 @@ sendspin_sha256 = { default = "673a04106efac77ac8c067fdbf6d84d62c72d76699308bddd
 system_size = { default = "2GiB", description = "A/B system partition capacity applied at first-boot bootstrap." }
 backend_deb_url = { default = "https://github.com/pl4yrs/pl4yrs/releases/download/v0.0.1/pl4yrs-backend_0.0.1-1_arm64.deb", description = "URL of the pl4yrs-backend .deb to install. Empty = use recipes/pl4yrs/files/pl4yrs-backend_*.deb (local dev builds)." }
 backend_deb_sha256 = { default = "ebe266fba1cfd7043279f0b52d2d6820644846b5dcfc0cf1da5fb90765be9fb7", description = "SHA-256 of the pl4yrs-backend .deb." }
-tui_deb_url = { default = "https://github.com/pl4yrs/pl4yrs/releases/download/v0.0.1/pl4yrs-tui_0.0.1-1_arm64.", description = "URL of the pl4yrs-tui .deb. Empty = use recipes/pl4yrs/files/pl4yrs-tui_*.deb (local dev builds)." }
+tui_deb_url = { default = "https://github.com/pl4yrs/pl4yrs/releases/download/v0.0.1/pl4yrs-tui_0.0.1-1_arm64.deb", description = "URL of the pl4yrs-tui .deb. Empty = use recipes/pl4yrs/files/pl4yrs-tui_*.deb (local dev builds)." }
 tui_deb_sha256 = { default = "cb76894db093af4c576438c04f3ad0cc9d05107e6990936ae84144bb03ffe049", description = "SHA-256 of the pl4yrs-tui .deb." }
