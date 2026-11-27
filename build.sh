@@ -9,6 +9,7 @@
 # Usage:
 #   ./build.sh                  # bake all systems (production + dev)
 #   ./build.sh rpi-uboot-arm64  # bake only the listed system(s)
+#   ./build.sh clean            # remove the build volume entirely (full reset)
 
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -16,6 +17,12 @@ cd "$(dirname "$0")"
 BUILD_VOLUME=${BUILD_VOLUME:-pl4yrs-rugix-build}
 CACHE_VOLUME=${CACHE_VOLUME:-rugix-build-cache}
 IMAGE=${RUGIX_BAKERY_IMAGE:-ghcr.io/rugix/rugix-bakery:v0.9.6}
+
+if [ "${1:-}" = "clean" ]; then
+    docker volume rm "${BUILD_VOLUME}"
+    echo ">>> Removed volume ${BUILD_VOLUME}"
+    exit 0
+fi
 
 if [ "$#" -gt 0 ]; then
     SYSTEMS=("$@")
@@ -48,5 +55,11 @@ for sys in "${SYSTEMS[@]}"; do
         sh -c "rm -rf '/dst/${sys}' && cp -r '/src/build/${sys}' /dst/"
 
     xz -kf -T0 "build/${sys}/system.img"
+
+    # Prune rule workspaces + materialized trees
+    docker run --rm -v "${BUILD_VOLUME}":/project debian:trixie-slim \
+        sh -c 'rm -rf /project/.rugix/rules/task-* /project/.rugix/rules/.tmp* \
+                      /project/.rugix/rules/trees /project/.rugix/rules/*/trees' || true
+
     echo ">>> Done: build/${sys}/"
 done
