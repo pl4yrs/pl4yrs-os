@@ -1,6 +1,10 @@
-description = "pl4yrs service account + sendspin-cli player package"
+description = "pl4yrs + sendspin-cli player packages"
 
 [parameters]
-sendspin_url = { default = "https://github.com/pl4yrs/sendspin-cpp-cli-deb/releases/download/v0.4.0/sendspin-cli_0.4.0-1_arm64.deb", description = "URL of the sendspin-cli .deb to install." }
-sendspin_sha256 = { default = "673a04106efac77ac8c067fdbf6d84d62c72d76699308bddda8d6e35de19b243", description = "SHA-256 of the sendspin-cli .deb." }
+sendspin_url = { default = "https://github.com/pl4yrs/sendspin-cpp-cli-deb/releases/download/v1.0.1/sendspin-cli_1.0.1-1_arm64.deb", description = "URL of the sendspin-cli .deb to install." }
+sendspin_sha256 = { default = "4b29646ae4e363a237382a8056b4066b76cd59b24dfa8d6ff435e4f836150531", description = "SHA-256 of the sendspin-cli .deb." }
 system_size = { default = "2GiB", description = "A/B system partition capacity applied at first-boot bootstrap." }
+backend_deb_url = { default = "https://github.com/pl4yrs/pl4yrs/releases/download/v0.0.2/pl4yrs-backend_0.0.2-1_arm64.deb", description = "URL of the pl4yrs-backend .deb to install. Empty = use recipes/pl4yrs/files/pl4yrs-backend_*.deb (local dev builds)." }
+backend_deb_sha256 = { default = "64115b09b6e21a59d1f0f27762be380c5d6de8b2c2b193d92b3edf71e3d5fb24", description = "SHA-256 of the pl4yrs-backend .deb." }
+tui_deb_url = { default = "https://github.com/pl4yrs/pl4yrs/releases/download/v0.0.2/pl4yrs-tui_0.0.2-1_arm64.deb", description = "URL of the pl4yrs-tui .deb. Empty = use recipes/pl4yrs/files/pl4yrs-tui_*.deb (local dev builds)." }
+tui_deb_sha256 = { default = "45837479a0d2939c96b076c4fc1f1468c28705e57c8464cdf068cda0d37b584e", description = "SHA-256 of the pl4yrs-tui .deb." }
