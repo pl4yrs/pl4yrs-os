@@ -1,0 +1,4 @@
+description = "Persistence for configuration and journal"
+
+[parameters]
+journal_max_use = { default = "64M", description = "SystemMaxUse cap for the persistent systemd journal." }

@@ -58,11 +58,51 @@ over to your device, and run there in-place upgrade process.
 ```bash
 # OTA (unsigned bundle, dev only)
 rugix-ctrl update install --insecure-skip-bundle-verification system.rugixb
-# Once completed it will reboot into the new system
-# You can then check the status and commit changes
-rugix-ctrl system info       # slot state
-rugix-ctrl system commit     # make the new slot permanent (or next boot rolls back)
+# Once completed it reboots into the new (provisional) system.
+# pl4yrs-mark-good.service then polls pl4yrs-backend + sendspin-cli + the
+# backend /health endpoint.
+# If healthy, it auto-commits
+# If unhealthy, reboots into the previously committed slot.
+rugix-ctrl system info       # inspect slot state (active vs default boot group)
 ```
+
+Mark-good only acts on provisional boots and can be vetoed by creating
+`pl4yrs/no-mark-good` on the shared FAT config partition 
+Details can be tuned in `/etc/pl4yrs/mark-good.conf`.
+
+## Persistence
+
+The root filesystem is read-only with a **discarded** overlay: every runtime
+write outside the persist list vanishes at reboot. This is deliberate
+
+This has some implications:
+
+- Installing packages or editing files on a live device is **dev-only** and
+  ephemeral. Those changes will be reverted on a reboot.
+- The **curated list** (in `recipes/persistence/files/pl4yrs.toml`)
+  survives reboots *and* OTA updates: NetworkManager connections (Wi-Fi
+  provisioning), `/etc/sendspin-cli.conf`, `/etc/pl4yrs/`, `/etc/hostname`,
+  `/etc/hosts`, `/var/log/journal`. SSH host keys, `/root`, machine-id and the
+  fake-hwclock state persist natively.
+- Persisted paths are copied from the image **once, at first boot** — runtime
+  contents then shadow newer image defaults forever.
+- The journal is persistent and capped (`SystemMaxUse`, default 64M — recipe
+  param `journal_max_use`), journal logs remain accessible across reboots/OTAs.
+
+### Factory reset
+
+You have two options if you want to do a factory reset of your device.
+Both triggers wipe **all** state — the device comes back exactly like a fresh
+flash. SSH host keys are regenerated, so expect a `known_hosts` mismatch on your machine):
+
+```bash
+# 1. On a booted device, over SSH (add --backup to stash state for post-mortem):
+rugix-ctrl state reset
+```
+
+2. Without booting the device: create an empty file at `.rugix/wipe-data`
+    on the FAT config partition (first partition, mountable on any computer),
+    then boot.
 
 ## Fallback AP
 
