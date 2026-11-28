@@ -1,0 +1,28 @@
+# pl4yrs curated persist list (Rugix state fragments, merged from /etc/rugix/state/).
+#
+# Persisted paths are copied from the image once at first boot and then shadow
+# newer image defaults forever (conffile-like semantics). Anything NOT listed
+# here is ephemeral: the root overlay is discarded on every reboot.
+
+# Wi-Fi network configuration.
+[[persist]]
+directory = "/etc/NetworkManager/system-connections"
+
+# sendspin player configuration.
+[[persist]]
+file = "/etc/sendspin-cli.conf"
+
+# Runtime overrides for ap-fallback / mark-good.
+[[persist]]
+directory = "/etc/pl4yrs"
+
+# Device identity
+[[persist]]
+file = "/etc/hostname"
+
+[[persist]]
+file = "/etc/hosts"
+
+# Persistent journal
+[[persist]]
+directory = "/var/log/journal"
