@@ -1,0 +1,12 @@
+[Unit]
+Description=pl4yrs health-gated mark-good (commit provisional boots, reboot to previous slot on failure)
+After=pl4yrs-backend.service sendspin-cli.service
+Wants=pl4yrs-backend.service sendspin-cli.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/pl4yrs-mark-good.sh
+
+[Install]
+WantedBy=multi-user.target

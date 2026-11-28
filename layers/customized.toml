@@ -15,6 +15,7 @@ recipes = [
     "pl4yrs-web",
     "pl4yrs",
     "ap-fallback",
+    "mark-good",
     "timesync",
 ]
 
